@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<body class="hold-transition login-page">
+
+<div class="content-wrapper">
+
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+   
+      <form action="city" method="post">
+
+
+            <div>
+                <label>City Name</label>
+                <input class="form-control" type="text" name="city">&nbsp;
+                
+                <label>State Name</label>
+                <select name="state">
+                  {{#each mycity}}
+                  <option value="{{_id}}">{{state}}</option>
+                  {{/each}}
+                </select>
+                
+                <label>Country Name</label>
+                <select name="country">
+                  {{#each mystate}}
+                  <option value="{{_id}}">{{country}}</option>
+                  {{/each}}
+                </select>
+                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+            </div>
+
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+
+</body>
+</html>

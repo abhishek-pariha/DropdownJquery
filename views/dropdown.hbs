@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ </head>
+ <body>
+ 
+  <form method="POST" action="dropdown">
+    <label class="input-lg">Country Name</label>
+    <select name="country" id="country-dropdown" class="form-control input-lg">
+      {{#each mycountry}}
+      <option value="_id">{{country}}</option>
+      {{/each}}
+    </select>
+    <br />
+    <label class="input-lg">State Name</label>
+   <select name="state" id="state-dropdown" class="form-control input-lg">
+    {{#each mystate}}
+    <option value="{{_id}}">{{state}}</option>
+    {{/each}}
+   </select>
+   <br />
+   <label class="input-lg">City Name</label>
+   <select name="city" id="city-dropdown" class="form-control input-lg">
+     {{#each mycity}}
+    <option value="{{_id}}">{{city}}</option>
+    {{/each}}
+   </select>
+  </form> 
+    <script>
+      $(document).ready(function(){
+        
+      })
+    </script>
+   </body>
+</html>

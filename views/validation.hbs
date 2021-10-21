@@ -1,0 +1,229 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Validation</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <style>
+           body {
+    background-color: #FFEBEE
+}
+
+p{
+    color: red;
+}
+.card {
+    width: 400px;
+    background-color: #fff;
+    border: none;
+    border-radius: 12px
+}
+
+label.radio {
+    cursor: pointer;
+    width: 100%
+}
+
+label.radio input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none
+}
+
+label.radio span {
+    padding: 7px 14px;
+    border: 2px solid #eee;
+    display: inline-block;
+    color: #039be5;
+    border-radius: 10px;
+    width: 100%;
+    height: 48px;
+    line-height: 27px
+}
+
+label.radio input:checked+span {
+    border-color: #039BE5;
+    background-color: #81D4FA;
+    color: #fff;
+    border-radius: 9px;
+    height: 48px;
+    line-height: 27px
+}
+
+.form-control {
+    margin-top: 10px;
+    height: 48px;
+    border: 2px solid #eee;
+    border-radius: 10px
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: 2px solid #039BE5
+}
+
+.agree-text {
+    font-size: 12px
+}
+
+.terms {
+    font-size: 12px;
+    text-decoration: none;
+    color: #039BE5
+}
+
+.confirm-button {
+    height: 50px;
+    border-radius: 10px
+}
+        </style>
+    </head>
+    <body>
+        <form method="POST" action="validator">
+            <div class="container mt-5 mb-5 d-flex justify-content-center">
+                <div class="card px-1 py-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <!-- <label for="name">Name</label> --> 
+                                    <input class="form-control" type="text" name="pancard" placeholder="Pan Card"> </div>
+                                    {{#if errors}}
+                                        <p>{{errors.pancard.msg}}</p>
+                                    {{/if}}
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <!-- <label for="name">Name</label> --> 
+                                    <input class="form-control" type="text" name="uidcard" placeholder="Aadhar Card"> </div>
+                                    {{#if errors}}
+                                        <p>{{errors.uidcard.msg}}</p>
+                                    {{/if}}
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <!-- <label for="name">Name</label> --> 
+                                    <input class="form-control" type="text" name="passport" placeholder="Passport Number"> </div>
+                                    {{#if errors}}
+                                        <p>{{errors.passport.msg}}</p>
+                                    {{/if}}
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <!-- <label for="name">Name</label> --> 
+                                    <input class="form-control" type="text" name="mobile" placeholder="Mobile Number"> </div>
+                                    {{#if errors}}
+                                        <p>{{errors.mobile.msg}}</p>
+                                    {{/if}}
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <!-- <label for="name">Name</label> --> 
+                                    <input class="form-control" type="text" name="gst" placeholder="Gst Number"> </div>
+                                    {{#if errors}}
+                                        <p>{{errors.gst.msg}}</p>
+                                    {{/if}}
+                                </div>
+                        </div>
+                       <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group"> 
+                                        <input class="form-control" type="text" name="email" placeholder="Email ID"> </div>
+                                        {{#if errors}}
+                                            <p>{{errors.email.msg}}</p>
+                                        {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group"> 
+                                        <input class="form-control" type="text" name="password" placeholder="Password"> </div>
+                                        {{#if errors}}
+                                            <p>{{errors.password.msg}}</p>
+                                        {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" d-flex flex-column text-center px-5 mt-3 mb-3"> <small class="agree-text">By Booking this appointment you agree to the</small> <a href="#" class="terms">Terms & Conditions</a> </div> <button class="btn btn-primary btn-block confirm-button">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+        {{!-- <form method="POST" action="validator">
+            <div>
+                
+                <label>Add Pan</label>
+                <input type="text" name="pancard">
+                {{#if errors}}
+                    <p>{{errors.pancard.msg}}</p>
+                {{/if}}
+            </div>
+            <div>
+                <label>Add UID</label>
+                <input type="text" name="uidcard">
+                {{#if errors}}
+                    <p>{{errors.uidcard.msg}}</p>
+                {{/if}}
+            </div>
+            <div>
+                <label>Add Passport</label>
+                <input type="text" name="passport">
+                {{#if errors}}
+                    <p>{{errors.passport.msg}}</p>
+                {{/if}}
+            </div>
+            <div>
+                <label>Add Mobile Number</label>
+                <input type="number" name="mobile">
+                {{#if errors}}
+                    <p>{{errors.mobile.msg}}</p>
+                {{/if}}
+            </div>
+            <div>
+                <label>Add GST Number</label>
+                <input type="text" name="gst">
+            </div>
+            {{#if errors}}
+                <p>{{errors.gst.msg}} </p>
+            {{/if}}
+            <div>
+                <label>Email</label>
+                <input type="email" name="Email" placeholder="example.samplemail@gmail.com">
+                {{#if errors}}
+                    <p>{{errors.email.msg}} </p>
+                {{/if}}
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" name="password">
+                {{#if errors}}
+                    <p>{{errors.password.msg}}</p>
+                {{/if}}
+            </div>
+            <div>
+                
+                <input type="submit" value="Submit">
+            </div>
+        </form> --}}
+    </body>
+</html>
