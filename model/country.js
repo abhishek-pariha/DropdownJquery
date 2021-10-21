@@ -5,4 +5,4 @@ const mySchema = new Schema({
     country : {type : String}
 })
 
-module.exports = mongoose.model('dropdown',mySchema);
+module.exports = mongoose.model('dropdown',mySchema); 

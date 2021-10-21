@@ -10,7 +10,7 @@ const mySchema = new Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'state'
     },
-    country : 
+    country :  
         {
             type : mongoose.Schema.Types.ObjectId,
             ref : 'country'

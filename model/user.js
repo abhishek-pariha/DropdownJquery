@@ -11,4 +11,4 @@ const mySchema = new Schema({
     profileImg : {type : String},
     joindata : {type : Date, default : Date.now}
 })
-module.exports = mongoose.model('user',mySchema);
+module.exports = mongoose.model('user',mySchema); 

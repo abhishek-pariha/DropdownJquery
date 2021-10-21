@@ -6,7 +6,7 @@ const mySchema = new Schema({
     state : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'state'
-    },
+    }, 
     country : 
         {
             type : mongoose.Schema.Types.ObjectId,

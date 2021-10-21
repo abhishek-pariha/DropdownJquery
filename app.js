@@ -26,7 +26,7 @@ app.use(session({secret: 'keyboard cat',resave: false,saveUninitialized: true,co
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-
+ 
 
 //DB Connection
 mongoose.Promise = global.Promise;

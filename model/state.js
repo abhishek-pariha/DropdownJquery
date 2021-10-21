@@ -10,4 +10,4 @@ var mySchema = new Schema({
 })
 
 //
-module.exports = mongoose.model('state',mySchema);
+module.exports = mongoose.model('state',mySchema); 
