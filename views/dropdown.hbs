@@ -10,30 +10,58 @@
  
   <form method="POST" action="dropdown">
     <label class="input-lg">Country Name</label>
-    <select name="country" id="country-dropdown" class="form-control input-lg">
+    <select name="country" id="country-id" class="form-control input-lg">
       {{#each mycountry}}
       <option value="_id">{{country}}</option>
       {{/each}}
     </select>
     <br />
     <label class="input-lg">State Name</label>
-   <select name="state" id="state-dropdown" class="form-control input-lg">
+   <select name="state" id="state-id"  class="form-control input-lg">
     {{#each mystate}}
     <option value="{{_id}}">{{state}}</option>
     {{/each}}
    </select>
    <br />
    <label class="input-lg">City Name</label>
-   <select name="city" id="city-dropdown" class="form-control input-lg">
+   <select name="city" id="city-id" class="form-control input-lg">
      {{#each mycity}}
     <option value="{{_id}}">{{city}}</option>
     {{/each}}
    </select>
   </form> 
     <script> 
-      $(document).ready(function(){
-
-      })
+      $(document).ready(function() {
+        $('#country-id').on('change', function() {
+                var country = this.value;
+                $.ajax({
+                    url: "/users/dropdown",
+                    type: "POST",
+                    data: {
+                        country: country
+                    },
+                    cache: false,
+                    success: function(result){
+                        $("#state-id").html(result);
+                        $('#city-id').html('<option value="">Select State First</option>'); 
+                    }
+                });
+            });    
+        $('#state-id').on('change', function() {
+                var state = this.value;
+                $.ajax({
+                    url: "/users/dropdown",
+                    type: "POST",
+                    data: {
+                        state: state
+                    },
+                    cache: false,
+                    success: function(result){
+                        $("#city-id").html(result);
+                    }
+                });
+          });
+      });
     </script>
    </body>
 </html>
