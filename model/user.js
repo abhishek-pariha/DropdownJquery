@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const mySchema = new Schema({
     username : {type : String},
@@ -9,6 +9,7 @@ const mySchema = new Schema({
     DOB : {type : String},
     gender : {type : String},
     profileImg : {type : String},
-    joindata : {type : Date, default : Date.now}
-})
+    joindata : {type : Date, default : Date.now},
+     
+},{timestamps : true})
 module.exports = mongoose.model('user',mySchema); 

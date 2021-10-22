@@ -4,20 +4,22 @@
  
   <script src="/javascripts/min.js"></script>
   <link rel="stylesheet" href="/stylesheets/min.css" />
-  {{!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
+  <script src="/javascripts/bootstrap.min.js"></script>
  </head>
  <body>
  
   <form method="POST" action="dropdown">
     <label class="input-lg">Country Name</label>
     <select name="country" id="country-id" class="form-control input-lg">
+      <option value="">Select Country</option>
       {{#each mycountry}}
-      <option value="_id">{{country}}</option>
+      <option value="{{_id}}">{{country}}</option>
       {{/each}}
     </select>
     <br />
     <label class="input-lg">State Name</label>
    <select name="state" id="state-id"  class="form-control input-lg">
+     
     {{#each mystate}}
     <option value="{{_id}}">{{state}}</option>
     {{/each}}
@@ -25,39 +27,63 @@
    <br />
    <label class="input-lg">City Name</label>
    <select name="city" id="city-id" class="form-control input-lg">
+    
      {{#each mycity}}
     <option value="{{_id}}">{{city}}</option>
     {{/each}}
-   </select>
+   </select><br><br>
+   <input class="primary" type="submit" value="Submit">
   </form> 
     <script> 
       $(document).ready(function() {
         $('#country-id').on('change', function() {
-                var country = this.value;
+                console.log('val')
+                var country = $(this).val();
+                console.log($(this).val());
                 $.ajax({
-                    url: "/users/dropdown",
-                    type: "POST",
+                    url: "/users/dropdown/states",
+                    type: "post",
                     data: {
                         country: country
                     },
                     cache: false,
                     success: function(result){
-                        $("#state-id").html(result);
-                        $('#city-id').html('<option value="">Select State First</option>'); 
+                          console.log("result");
+                          console.log(result);
+                          
+                          console.log('state');
+                          //console.log(state);
+                          $('#state-id').empty();
+                          $('#state-id').html('<option value="">Select State</option>');
+                          $.each(result,function(key, value){
+                              console.log("key");
+                              console.log(value);
+                              console.log('<option value="'+value._id+'">'+value.state+'</option>');
+                            $("#state-id").append('<option value="'+value._id+'">'+value.state+'</option>');
+                            
+                          });
+                          $('#city-id').html('<option value="">Select State First</option>');
+
                     }
                 });
             });    
         $('#state-id').on('change', function() {
-                var state = this.value;
+          console.log('in statate')
+                var state = $(this).val();
                 $.ajax({
-                    url: "/users/dropdown",
-                    type: "POST",
+                    url: "/users/dropdown/city",
+                    type: "post",
                     data: {
                         state: state
                     },
                     cache: false,
                     success: function(result){
-                        $("#city-id").html(result);
+                      console.log("result1");
+                      console.log(result);
+                      $('#city-id').html('<option value="">Select City</option>');
+                        $.each(result,function(key, value){
+                         $('#city-id').append('<option value="'+value._id+'">'+value.city+'</option>');
+                      })
                     }
                 });
           });

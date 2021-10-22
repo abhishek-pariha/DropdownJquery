@@ -8,7 +8,7 @@ const UserModel = require('../model/user');
 const countryModel = require('../model/country');
 const stateModel = require('../model/state');
 const cityModel = require('../model/city');
-
+const dropDownModel = require('../model/dropdown');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -206,27 +206,55 @@ router.post('/city',function(req, res, next){
 //Api for Dropdown
 router.get('/dropdown', function(req, res, next){
   cityModel.find(function(err,city_data){
-    if(err){
-      console.log(('Error in city'+err));
-    }else{
-     stateModel.find(function(err,state_data){
-          if(err){
-              console.log("City not fetch"+err);
-          }else{
-              countryModel.find(function(err,country_data){
-                  if(err){
-                      console.log("state not fetch"+err);
-                  }else{
-                      console.log("Successfully fetch data");
-                      res.render('dropdown',{mycity : city_data ,mystate : state_data,mycountry : country_data});
-                  }
-              }).lean();
-          }
-      }).lean();
-    }
-  })
+    stateModel.find(function(err,state_data){
+      countryModel.find(function(err,country_data){
+        if(err){
+            console.log("state not fetch"+err);
+        }else{
+            console.log("Successfully fetch data");
+            res.render('dropdown',{mycountry : country_data});
+        }
+    }).lean();
+    }).lean();
+  }).lean();
+
 
 })
+router.post('/dropdown/:type', function(req, res, next){
+  try{
+
+    if(req.params.type == 'states' ) {
+      console.log(req.body.country)
+      stateModel.find({country:req.body.country},function(err,state_data){
+        console.log("req.body");
+        console.log(req.body);
+          
+        if(err){
+            console.log("City not fetch"+err);
+        }else{
+          res.send(state_data);
+          
+        }
+      }).lean();
+    } else if (req.params.type == 'city') {
+      console.log(req.body.state);
+        cityModel.find({state:req.body.state},function(err,city_data){
+        console.log("req.body");
+        console.log(req.body);
+        
+        if(err){
+          console.log(('Error in city'+err));
+        }else{
+          res.send(city_data);
+        }
+      }).lean();;
+    }
+  }catch(e) {
+  console.log(e);
+  }
+})
+
+
 
 router.post('/city',function(req, res, next){
   console.log(req.body);
