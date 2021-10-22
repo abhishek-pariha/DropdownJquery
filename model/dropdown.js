@@ -3,17 +3,14 @@ var Schema = mongoose.Schema;
 
 const mySchema = new Schema({
     city : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'city'
+        type : String
     },
     state : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'state'
+        type : String
     },
     country :  
         {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'country'
+            type : String
         }
     })
 
